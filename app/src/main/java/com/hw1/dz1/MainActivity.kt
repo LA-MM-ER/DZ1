@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
@@ -62,7 +63,9 @@ class MainActivity : ComponentActivity() {
 fun AddNumberBox() {
     var boxCount by rememberSaveable { mutableStateOf(0) }
     var temp: Int
-    Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())) {
         val configuration = LocalConfiguration.current
         when (configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> {
@@ -72,7 +75,7 @@ fun AddNumberBox() {
                 temp = 3
             }
         }
-        val rows = boxCount / temp + if (boxCount % temp == 0) 0 else 1
+        val rows = boxCount / temp + if (boxCount % temp == 0) 0 else 1 //Вычисляет количество строк для ящиков
         repeat(rows) { row ->
             Row(modifier = Modifier.fillMaxWidth()) {
                 repeat(temp) { column ->
@@ -90,6 +93,9 @@ fun AddNumberBox() {
                 }
             }
         }
+    }
+    Box (modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomEnd){
         ElevatedButton(onClick = { boxCount++ }) {
             Text("Add box", color = Color.Blue)
         }
