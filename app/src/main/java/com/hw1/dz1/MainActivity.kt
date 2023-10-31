@@ -1,5 +1,6 @@
 package com.hw1.dz1
 
+import com.hw1.dz1.ui.theme.*
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -62,7 +63,7 @@ fun AddNumberBox() {
                         val number = index + 1
                         Box(
                             modifier = Modifier
-                                .size(50.dp)
+                                .size(boxsz)
                                 .background(if (number % 2 == 0) Color.Red else Color.Blue)
                         ) {
                             Text(text = number.toString(), color = Color.White)
@@ -75,7 +76,7 @@ fun AddNumberBox() {
     Box (modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomEnd){
         ElevatedButton(onClick = { boxCount++ }) {
-            Text("Add box", color = Color.Blue)
+            Text(btntxt, color = Color.Blue)
         }
     }
 }
